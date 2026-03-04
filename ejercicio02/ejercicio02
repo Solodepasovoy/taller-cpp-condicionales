@@ -1,55 +1,56 @@
-#include <iostream>
 #include <cmath>
+#include <iostream>
 
-using namespace std;
+int main () {
+std::cout<<"Pon 3 coordenadas de un plano (todos los valores deben ser positivos), coloca las coordenadas x (espacio) y del primer punto, dale enter y repite el procedimiento con las 3 coordenadas\n";
+double xa;
+double xb;
+double xc;
+double ya;
+double yb;
+double yc;
+std::cin>>xa>>ya;
+std::cin>>xb>>yb;
+std::cin>>xc>>yc;
+double lineax = xb - xa;
+double linebx = xb - xc;
+double linecx = xc - xa;
+double lineay = yb - ya;
+double lineby = yb - yc;
+double linecy = yc - ya;
+bool triangulo;
 
-int main() {
-    double x1, y1, x2, y2, x3, y3;
+float lineaa = sqrt((pow(lineax, 2))+(pow(lineay, 2)));
+float lineab = sqrt((pow(linebx, 2))+(pow(lineby, 2)));
+float lineac = sqrt((pow(linecx, 2))+(pow(linecy, 2)));
 
-    cout << "Ingrese las coordenadas del primer punto (x1 y y1): ";
-    cin >> x1 >> y1;
+if (lineaa + lineab <= lineac || lineab + lineac <= lineaa || lineac + lineaa <= lineab) {
+triangulo = 0;
+} else {
+triangulo = 1;
+}
 
-    cout << "Ingrese las coordenadas del segundo punto (x2 y y2): ";
-    cin >> x2 >> y2;
+if (triangulo == 0) {
+std::cout<<"Los puntos no forman un triangulo\n";
+}else {
+std::cout<<"Los puntos forman un triangulo\n";
 
-    cout << "Ingrese las coordenadas del tercer punto (x3 y y3): ";
-    cin >> x3 >> y3;
+if (lineaa == lineab && lineab == lineac) {
+std::cout<<"El triangulo es equilatero\n";
+}else if (lineaa == lineab || lineab == lineac || lineac == lineaa) {
+std::cout<<"El triangulo es isósceles\n";
+} else {
+std::cout<<"El triangulo es escaleno\n"; 
+}
 
-    double a = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
-    double b = sqrt(pow(x3 - x2, 2) + pow(y3 - y2, 2));
-    double c = sqrt(pow(x1 - x3, 2) + pow(y1 - y3, 2));
+if (lineaa * lineaa + lineab * lineab == lineac*lineac || lineab * lineab + lineac * lineac == lineaa*lineaa || lineaa * lineaa + lineac * lineac == lineab*lineab){
+std::cout<<"Es un triangulo rectangulo";
+} else if (lineaa * lineaa + lineab * lineab > lineac*lineac || lineab * lineab + lineac * lineac > lineaa*lineaa || lineaa * lineaa + lineac * lineac > lineab*lineab){
+std::cout<<"Es un triangulo acutangulo";
+} else if (lineaa * lineaa + lineab * lineab < lineac*lineac || lineab * lineab + lineac * lineac < lineaa*lineaa || lineaa * lineaa + lineac * lineac < lineab*lineab){
+std::cout<<"Es un triangulo obtusangulo";
+}
+}
 
-    if (a + b > c && a + c > b && b + c > a) {
-
-        cout << "\nLos puntos SI forman un triangulo.\n";
-
-        if (a == b && b == c) {
-            cout << "Es un triangulo equilatero.\n";
-        } 
-        else if (a == b || a == c || b == c) {
-            cout << "Es un triangulo isosceles.\n";
-        } 
-        else {
-            cout << "Es un triangulo escaleno.\n";
-        }
-
-        double a2 = a * a;
-        double b2 = b * b;
-        double c2 = c * c;
-
-        if (a2 + b2 == c2 || a2 + c2 == b2 || b2 + c2 == a2) {
-            cout << "Es un triangulo rectangulo.\n";
-        } 
-        else if (a2 + b2 > c2 && a2 + c2 > b2 && b2 + c2 > a2) {
-            cout << "Es un triangulo acutangulo.\n";
-        } 
-        else {
-            cout << "Es un triangulo obtusangulo.\n";
-        }
-
-    } else {
-        cout << "\nLos puntos NO forman un triangulo.\n";
-    }
-
-    return 0;
+return 0;
 }
