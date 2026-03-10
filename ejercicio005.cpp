@@ -1,0 +1,22 @@
+#include <iostream>
+int main () {
+int nota = 70;
+char notados;
+if (nota < 70) {
+notados = 'F';
+} else if (nota < 75) {
+notados = 'D';
+} else if (nota < 80) {
+notados = 'C';
+} else if (nota < 85) {
+notados = 'B';
+} else if (nota < 90) {
+notados = 'A';
+}
+if (notados == 'F') {
+std::cout<<"Reprobado";
+} else {
+std::cout<<"Aprobado";
+}
+return 0;
+}
